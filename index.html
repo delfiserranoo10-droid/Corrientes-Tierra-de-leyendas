@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#101b30">
+  <meta name="description" content="Un viaje interactivo por las leyendas, la cultura y la naturaleza de Corrientes y Argentina.">
+  <title>Donde duerme la leyenda</title>
+  <link rel="stylesheet" href="estilos.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <div class="night-sky" aria-hidden="true"><div class="moon"></div><div class="stars"></div><div class="fireflies"></div></div>
+  <header id="site-header" class="site-header hidden">
+    <a href="#" class="brand" data-go="home" aria-label="Ir al inicio"><span class="brand-mark">✦</span> Donde duerme la leyenda</a>
+    <nav class="main-nav" aria-label="Navegación principal">
+      <button type="button" data-go="home">Inicio</button>
+      <button type="button" data-go="setup">Jugar</button>
+      <button type="button" data-go="library">Biblioteca</button>
+    </nav>
+  </header>
+
+  <main>
+    <section id="welcome" class="screen welcome-screen active" aria-labelledby="welcome-title">
+      <div class="welcome-orbit" aria-hidden="true"><span>✧</span><span>✦</span><span>✧</span></div>
+      <p class="eyebrow">UN ARCHIVO DE MEMORIAS DEL LITORAL</p>
+      <h1 id="welcome-title" class="display-title">DONDE DUERME<br><em>LA LEYENDA</em></h1>
+      <p class="welcome-copy">Hay historias que el monte guarda en silencio y que el agua lleva de una generación a otra. Esta noche, algunas vuelven a despertar.</p>
+      <form id="welcome-form" class="name-form">
+        <label for="player-name">Antes de cruzar este umbral, ¿cómo te llamás?</label>
+        <input id="player-name" name="player-name" type="text" maxlength="24" autocomplete="given-name" placeholder="Escribí tu nombre..." required>
+        <p id="name-error" class="form-error" role="alert"></p>
+        <button class="button button-gold" type="submit">Comenzar el viaje <span aria-hidden="true">↗</span></button>
+      </form>
+      <div class="welcome-bottom"><span>✦</span> CORRIENTES · LITORAL · ARGENTINA <span>✦</span></div>
+    </section>
+
+    <section id="home" class="screen page-screen" aria-labelledby="home-title">
+      <div class="section-heading">
+        <p class="eyebrow">EL REFUGIO DE LOS RELATOS</p>
+        <h2 id="home-title" class="display-title">Las historias <em>te estaban esperando</em></h2>
+        <p id="home-greeting" class="lead"></p>
+      </div>
+      <div class="portal-grid">
+        <article class="portal-card portal-game">
+          <div class="portal-art wheel-art" aria-hidden="true"><div class="mini-wheel"><span>✦</span></div><i class="spark spark-one">✧</i><i class="spark spark-two">✦</i></div>
+          <p class="eyebrow">PONÉ A PRUEBA TU CURIOSIDAD</p>
+          <h3>Entrar al misterio</h3>
+          <p>Girás la rueda, descubrís una categoría y reunís fragmentos de la memoria popular.</p>
+          <button class="button button-teal" data-go="setup">Entrar al misterio <span aria-hidden="true">→</span></button>
+        </article>
+        <article class="portal-card portal-library">
+          <div class="portal-art book-art" aria-hidden="true"><div class="book-shape"><span>✧</span><small>ARCHIVO<br>DE RELATOS</small></div></div>
+          <p class="eyebrow">VOCES QUE ATRAVIESAN EL TIEMPO</p>
+          <h3>Descubrir las leyendas correntinas</h3>
+          <p>Entrá a un archivo de seres, creencias y relatos que siguen viviendo en la cultura.</p>
+          <button class="button button-outline" data-go="library">Descubrir las leyendas <span aria-hidden="true">→</span></button>
+        </article>
+      </div>
+      <aside class="quote-strip"><span class="quote-star">✦</span><p>“Una historia no desaparece cuando termina: a veces, empieza a vivir en quien la escucha”.</p></aside>
+    </section>
+
+    <section id="setup" class="screen page-screen" aria-labelledby="setup-title">
+      <div class="section-heading narrow">
+        <p class="eyebrow">ANTES DE QUE GIRE LA NOCHE</p>
+        <h2 id="setup-title" class="display-title">¿Hasta dónde te <em>atrevés a llegar?</em></h2>
+        <p class="lead">Elegí la duración de tu recorrido. Cada respuesta abre una pequeña ventana a la cultura y la memoria.</p>
+      </div>
+      <div id="question-counts" class="count-grid" role="group" aria-label="Cantidad de preguntas">
+        <button class="count-option" data-count="5" aria-pressed="false"><strong>05</strong><span>preguntas</span></button>
+        <button class="count-option" data-count="10" aria-pressed="false"><strong>10</strong><span>preguntas</span></button>
+        <button class="count-option" data-count="15" aria-pressed="false"><strong>15</strong><span>preguntas</span></button>
+        <button class="count-option" data-count="20" aria-pressed="false"><strong>20</strong><span>preguntas</span></button>
+        <button class="count-option" data-count="25" aria-pressed="false"><strong>25</strong><span>preguntas</span></button>
+        <button class="count-option" data-count="30" aria-pressed="false"><strong>30</strong><span>preguntas</span></button>
+      </div>
+      <p id="setup-error" class="form-error center" role="alert"></p>
+      <div class="center"><button id="start-game" class="button button-gold" type="button">Comenzar partida <span aria-hidden="true">↗</span></button></div>
+    </section>
+
+    <section id="game" class="screen page-screen" aria-labelledby="game-title">
+      <div class="game-topline">
+        <div><p class="eyebrow">TU RECORRIDO</p><h2 id="game-title" class="display-title small-title">La rueda del <em>destino</em></h2></div>
+        <div class="score-pill"><span>✦</span><span id="score-live">0 puntos</span></div>
+      </div>
+      <div class="game-layout">
+        <div class="wheel-panel">
+          <div class="wheel-wrap">
+            <div id="wheel" class="wheel" role="img" aria-label="Ruleta con cinco categorías">
+              <span class="wheel-label label-0">Voces<br>del monte</span><span class="wheel-label label-1">Sombras y<br>misterios</span><span class="wheel-label label-2">Secretos del<br>Litoral</span><span class="wheel-label label-3">El alma<br>argentina</span><span class="wheel-label label-4">Huellas del<br>pasado</span>
+              <div class="wheel-center">✦</div>
+            </div>
+            <div class="wheel-pointer" aria-hidden="true">▼</div>
+          </div>
+          <p id="wheel-hint" class="muted center">La rueda elegirá una categoría para tu próxima pregunta.</p>
+          <button id="spin-button" class="button button-gold spin-button" type="button">Girar la ruleta <span aria-hidden="true">⟳</span></button>
+          <p id="spin-message" class="spin-message" aria-live="polite"></p>
+        </div>
+        <div class="question-panel">
+          <div class="stats-row"><span id="question-progress">Pregunta 1 de 5</span><span id="player-badge">Viajero/a</span></div>
+          <div id="category-badge" class="category-badge">Esperando categoría</div>
+          <div id="question-content" class="question-content">
+            <div class="question-placeholder"><span>✧</span><h3>Todo comienza con un giro</h3><p>Cuando estés lista/o, hacé girar la rueda y dejá que el relato te encuentre.</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="results" class="screen page-screen" aria-labelledby="results-title">
+      <div class="result-emblem" aria-hidden="true">✦</div>
+      <p class="eyebrow">EL ÚLTIMO ECO DE ESTA NOCHE</p>
+      <h2 id="results-title" class="display-title">El viaje llega <em>a su final</em></h2>
+      <p id="result-message" class="lead center"></p>
+      <div class="result-score"><strong id="final-score">0</strong><span>de <b id="final-total">5</b> respuestas correctas</span></div>
+      <div class="result-stats">
+        <div><span id="correct-count">0</span><small>Correctas</small></div>
+        <div><span id="wrong-count">0</span><small>Incorrectas</small></div>
+        <div><span id="percentage">0%</span><small>Precisión</small></div>
+      </div>
+      <div class="result-actions">
+        <button class="button button-gold" data-go="setup">Volver a jugar</button>
+        <button class="button button-outline" data-go="home">Volver al inicio</button>
+        <button class="button button-teal" data-go="library">Explorar las leyendas</button>
+      </div>
+    </section>
+
+    <section id="library" class="screen page-screen" aria-labelledby="library-title">
+      <div class="section-heading">
+        <p class="eyebrow">RELATOS QUE NO SE APAGAN</p>
+        <h2 id="library-title" class="display-title">El archivo de <em>las leyendas</em></h2>
+        <p class="lead">Cada relato es una huella: algunas nacieron junto al monte, otras viajaron por el país y todas nos recuerdan que la cultura también se cuenta.</p>
+      </div>
+      <div class="library-tools">
+        <label class="search-box"><span aria-hidden="true">⌕</span><input id="legend-search" type="search" placeholder="Buscar una leyenda..." aria-label="Buscar leyendas por nombre"></label>
+        <div id="legend-filters" class="filter-row" role="group" aria-label="Filtrar leyendas">
+          <button class="filter-chip active" data-filter="Todas" aria-pressed="true">Todas</button>
+          <button class="filter-chip" data-filter="Corrientes y Litoral" aria-pressed="false">Corrientes y Litoral</button>
+          <button class="filter-chip" data-filter="Tradición guaraní" aria-pressed="false">Tradición guaraní</button>
+          <button class="filter-chip" data-filter="Leyendas argentinas" aria-pressed="false">Leyendas argentinas</button>
+          <button class="filter-chip" data-filter="Misterios y creencias populares" aria-pressed="false">Misterios y creencias</button>
+          <button class="filter-chip" data-filter="Naturaleza y relatos regionales" aria-pressed="false">Naturaleza y relatos</button>
+        </div>
+      </div>
+      <p id="library-count" class="muted library-count"></p>
+      <div id="legend-grid" class="legend-grid"></div>
+      <div id="no-results" class="no-results hidden"><span>☾</span><h3>No encontramos ese relato</h3><p>Probá con otro nombre o limpiá la búsqueda para volver a recorrer el archivo.</p><button id="clear-search" class="button button-outline" type="button">Borrar búsqueda y filtros</button></div>
+      <article id="legend-detail" class="legend-detail hidden" aria-live="polite"></article>
+      <div id="library-sources" class="sources-note"><p><strong>Una nota sobre las fuentes:</strong> las leyendas son relatos de tradición oral y sus versiones pueden cambiar según la comunidad y la región. Las fichas presentan síntesis culturales, no pruebas de seres sobrenaturales.</p><p>Para ampliar: <a href="https://www.argentina.gob.ar/" target="_blank" rel="noopener">Argentina.gob.ar</a> · <a href="https://ich.unesco.org/es/RL/el-chamame-01600" target="_blank" rel="noopener">UNESCO: Chamamé</a> · <a href="https://www.argentina.gob.ar/ambiente/agua/humedales/sitiosramsar/ibera" target="_blank" rel="noopener">Sitio Ramsar Iberá</a>.</p></article>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>Donde duerme la leyenda • Historias de Corrientes y Argentina</p>
+    <p>Laboratorio de Aplicaciones — Serrano, Delfina</p>
+  </footer>
+</body>
+</html>
